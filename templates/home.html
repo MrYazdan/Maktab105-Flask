@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1 style='color:red'>Salam, {{ user.name }}</h1>
+    <hr>
+    {% if user.age > 18 %}
+        UP
+    {% else %}
+        Down
+    {% endif %}
+</div>
+</body>
+</html>

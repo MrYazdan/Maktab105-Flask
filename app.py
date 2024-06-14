@@ -1,27 +1,16 @@
-from flask import Flask, redirect, url_for
-from core.utils import reserve
 from urls import rules
+from flasgger import Swagger
+from core.utils import reserve
+from flask import Flask
+from users import users_app
 
-app = Flask("Maktab_105")
+app = Flask("Maktab_105", template_folder="templates")
+app.register_blueprint(users_app, url_prefix="/users")
+
+swagger = Swagger(app)
 
 # serving url patterns
 reserve(app, rules)
-
-@app.route('/google')
-def google():
-    return redirect("https://google.com")
-
-
-@app.route('/links')
-def links():
-    return dict(
-        index=url_for('index'),
-        home=url_for('home'),
-        links=url_for('links'),
-        sum=url_for('sum', x=10),
-        google=url_for('google'),
-    )
-
 
 
 if __name__ == '__main__':
